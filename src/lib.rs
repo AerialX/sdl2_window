@@ -40,10 +40,10 @@ pub struct Sdl2Window {
 impl Sdl2Window {
     /// Creates a new game window for SDL2.
     pub fn new(opengl: OpenGL, settings: WindowSettings) -> Sdl2Window {
-        let sdl_context = sdl2::init(sdl2::INIT_EVERYTHING).unwrap();
+        let sdl_context = sdl2::init(sdl2::INIT_EVERYTHING & !(sdl2::INIT_TIMER | sdl2::INIT_HAPTIC)).unwrap();
         
         // Not all drivers default to 32bit color, so explicitly set it to 32bit color
-        sdl2::video::gl_set_attribute(sdl2::video::GLAttr::GLRedSize, 8);
+        /*sdl2::video::gl_set_attribute(sdl2::video::GLAttr::GLRedSize, 8);
         sdl2::video::gl_set_attribute(sdl2::video::GLAttr::GLGreenSize, 8);
         sdl2::video::gl_set_attribute(sdl2::video::GLAttr::GLBlueSize, 8);
         sdl2::video::gl_set_attribute(sdl2::video::GLAttr::GLAlphaSize, 8);
@@ -70,7 +70,7 @@ impl Sdl2Window {
                 sdl2::video::GLAttr::GLMultiSampleSamples,
                 settings.samples as i32
             );
-        }
+        }*/
 
         let window = sdl2::video::Window::new(
             settings.title.as_slice(),
